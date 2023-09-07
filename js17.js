@@ -1,4 +1,4 @@
-// URL 모듈 사용법
+// URL 모듈 사용법 (GET 방식)
 const http = require("http");
 const { tmpdir } = require("os");
 const url = require("url");
