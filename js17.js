@@ -5,7 +5,7 @@ const url = require("url");
 
 const app = http.createServer((request, response) => {
     response.writeHead(200, {'Content-Type' : 'text/html; charset=UTF-8'});
-    var queryData = url.parse(request.url, true).query;             // id:LEE -> queryData.id
+    var queryData = url.parse(request.url, true).query;             // 쿼리스트링만 추출
     var tmp1 = `<!DOCTYPE html>
     <html lang="en">
     <head>
