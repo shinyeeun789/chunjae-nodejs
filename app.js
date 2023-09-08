@@ -102,22 +102,26 @@ var app = http.createServer((req, res) => {
                 res.end(html);
             });
         } else {
-            fs.readdir('./data', function(err, filelist) {
-                fs.readFile(`./data/${queryData.id}`, function(err, filelist) {
-                    var title = 'Detail';
-                    var decoration = '글 상세보기';
-                    var list = template.list(filelist);
-                    var html = template.HTML(title, list, `<h2> ${decoration} </h2>`, 
-                        `<div class='btncover'>
-                            <a class='btn' href='/'>글 목록</a>
-                            <a class='btn' href='/update/?id=${title}'>글 수정</a>
-                            <a class='btn' href='/delete'>글 삭제</a>
-                        </div>`);
-                        
-                    res.writeHead(200);
-                    res.end(html);
+            fs.readdir('./data', function(error, filelist) {
+                var filteredId = path.parse(queryData.id).base;
+                fs.readFile(`data/${filteredId}`, 'utf8', function(err, description) {
+                  var title = queryData.id;
+                  var list = template.list(filelist);
+                  var html = template.HTML(title, list,
+                    `<h2>${title}</h2>${description}`,
+                    ` <div class="btncover">
+                      <a class="btn" href="/create">글 작성</a>
+                      <a class="btn" href="/update?id=${title}">글 수정</a>
+                      <form action="/delete_pro" method="post" style="display: inline; padding 9px;">
+                        <input type="hidden" name="id" value="${title}">
+                        <input type="submit" value="삭제" class="btn">
+                      </form>
+                      </div>`
+                  );
+                  res.writeHead(200);
+                  res.end(html);
                 });
-            });
+              });
         }
     } else if (pathname === '/create') {
         // 글쓰기 창 표시
