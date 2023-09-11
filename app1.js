@@ -24,7 +24,7 @@ var template = {
             width: 90%;
             max-width: 450px;
             box-shadow: 0px 40px 30px -20px rgba(0, 0, 0, 0.3);
-        }
+        } 
 
         .titlebar {
             background-color: #F9F9F9;
