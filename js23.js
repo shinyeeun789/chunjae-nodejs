@@ -10,7 +10,7 @@ app.get('/', (req, res) => {
     res.sendFile(__dirname + "/index.html");
 });
 app.get('/sub1', (req, res) => {
-    res.sendFile(__dirname + "/sub.html");
+    res.sendFile(__dirname + "/sub1.html");
 });
 app.get('/detail', (req, res) => {
     res.sendFile(__dirname + "/detail.html");
