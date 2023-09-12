@@ -43,13 +43,15 @@ app.get('/', (req, res) => {
 });
 app.get('/list', (req, res) => {
     title = `<h2>샘플 항목</h2>`;
-    let li = `<ul>`;
+    let li = `<table>
+    <tr><th> 번호 </th> <th> 이름 </th></tr>
+    <tr>`;
     dbCon.getSampleList()
         .then((rows) => {
-            rows.forEach((row) => {
-                li = li + `<li><a href="/get/${row.NO}">${row.NAME}</a></li>`;
+            rows.forEach(function(row) {
+                li = li + `<tr><td>${row.NO}</td><td><a href="/get/${row.NO}">${row.NAME}</a></td>`;
             });
-            li = li + `</ul>`;
+            li = li + `</tr></table>`;
             res.send(tmp1+title+li+tmp2);
         })
         .catch((errMsg) => {
