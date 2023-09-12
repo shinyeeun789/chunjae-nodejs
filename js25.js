@@ -1,4 +1,6 @@
 // npm install mariadb
+
+// sampleList
 const dbCon = require("./mariaDBConn");
 const express = require("express");
 const app = express();
